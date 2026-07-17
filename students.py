@@ -10,6 +10,8 @@ students = [
 
 
 def average_score(data):
+    if len(data) == 0:
+        return 0  # Corrective maintenance: avoid ZeroDivisionError on empty list
     total = 0
     for d in data:
         total += d["score"]
@@ -17,4 +19,9 @@ def average_score(data):
 
 
 def add_student(name, score):
+    # Corrective maintenance: reject invalid input instead of storing bad data
+    if not name or not isinstance(name, str):
+        raise ValueError("Student name must be a non-empty string")
+    if not isinstance(score, (int, float)) or not 0 <= score <= 100:
+        raise ValueError("Score must be a number between 0 and 100")
     students.append({"name": name, "score": score})
