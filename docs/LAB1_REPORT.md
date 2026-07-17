@@ -25,7 +25,7 @@ records and score statistics.
 | `README.md` | Project structure, usage instructions, and branching model. |
 | `.gitignore` | Excludes `__pycache__/`, virtual environments, and OS artifacts from version control. |
 
-> **[SCREENSHOT 1.1]** — VS Code Explorer showing the project file structure.
+> **[SCREENSHOT 1.1]** — IDE file explorer showing the project file structure.
 
 ## 3. GitHub Repository Creation
 

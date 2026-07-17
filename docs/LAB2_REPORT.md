@@ -57,7 +57,7 @@ def add_student(name, score):
     students.append({"name": name, "score": score})
 ```
 
-> **[SCREENSHOT 2.1]** — VS Code diff of the corrective commit (`git show 1894be1`).
+> **[SCREENSHOT 2.1]** — IDE diff view of the corrective commit (`git show 1894be1`).
 
 ### 3.2 Adaptive Maintenance (Environment Update)
 
@@ -116,7 +116,7 @@ Median  :  70.50
 - Helpers now raise a clear `ValueError` on empty input instead of an
   accidental `IndexError`.
 
-> **[SCREENSHOT 2.4]** — VS Code showing the refactored `students.py` with docstrings.
+> **[SCREENSHOT 2.4]** — IDE showing the refactored `students.py` with docstrings.
 
 ## 4. Version Control
 
