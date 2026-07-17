@@ -1,0 +1,2 @@
+# No external dependencies required for v1.0
+# Standard library only
