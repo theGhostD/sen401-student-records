@@ -1,6 +1,18 @@
 # students.py - data module for the student records demo app
+# Adaptive maintenance: updated for Python 3.12 (modern type hints) and
+# Pydantic v2 is now used for data validation of student records.
 
-students = [
+from pydantic import BaseModel, Field, ValidationError
+
+
+class Student(BaseModel):
+    """A validated student record (adaptive maintenance: Pydantic v2)."""
+
+    name: str = Field(min_length=1)
+    score: float = Field(ge=0, le=100)
+
+
+students: list[dict[str, str | float]] = [
     {"name": "James", "score": 45},
     {"name": "Deborah", "score": 82},
     {"name": "Amina", "score": 67},
@@ -9,7 +21,7 @@ students = [
 ]
 
 
-def average_score(data):
+def average_score(data: list[dict[str, str | float]]) -> float:
     if len(data) == 0:
         return 0  # Corrective maintenance: avoid ZeroDivisionError on empty list
     total = 0
@@ -18,10 +30,10 @@ def average_score(data):
     return total / len(data)
 
 
-def add_student(name, score):
-    # Corrective maintenance: reject invalid input instead of storing bad data
-    if not name or not isinstance(name, str):
-        raise ValueError("Student name must be a non-empty string")
-    if not isinstance(score, (int, float)) or not 0 <= score <= 100:
-        raise ValueError("Score must be a number between 0 and 100")
-    students.append({"name": name, "score": score})
+def add_student(name: str, score: float) -> None:
+    # Adaptive maintenance: validation now delegated to the Pydantic model
+    try:
+        student = Student(name=name, score=score)
+    except ValidationError as exc:
+        raise ValueError(f"Invalid student record: {exc}") from exc
+    students.append(student.model_dump())
